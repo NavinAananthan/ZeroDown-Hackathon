@@ -75,7 +75,7 @@ def get_avg_day(market_metrics):
     return avg_prices
 
 
-def avg_day(score2,mid2,city2,mdi2):
+def average_day(score2,mid2,city2,mdi2):
 
     st.text("The below score is based on Average of the the days to sell")
     try:
@@ -111,6 +111,6 @@ maxscore2=max(score2)
 ind2=score2.index(maxscore2)
 maxind2=mid2[ind2]
 day_score(score2,mid2,maxscore2,maxind2)
-avg_day(score2,mid2,city2,mdi2)
+average_day(score2,mid2,city2,mdi2)
 
 #print(score2)
