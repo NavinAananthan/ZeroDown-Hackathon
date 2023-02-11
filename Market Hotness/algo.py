@@ -19,9 +19,11 @@ try:
     cursor = conn.cursor()
 
     # SELECT
-    select_data(conn, cursor, 'todo','372492')
+    select_data(conn, cursor, 'market','372492')
 
     conn.commit()
+
+
 
 
 except (Exception, psycopg2.Error) as error:
