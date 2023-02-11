@@ -15,6 +15,7 @@ def get_avg_days_to_sell(market_metrics):
 
 
 def max_score(score,mid,maxscore,maxid):
+    st.header("Market hotness Calculator")
     st.text("Graph for the Avg sales price and their corresponding market_id")
     st.line_chart(pd.DataFrame(score,mid))
     st.text(f"The max sales {maxscore} has been done by the market id {maxid}")
@@ -46,8 +47,8 @@ def day_sell(score,mid):
         st.warning("Sorry, Enter correct Market id")
 
 
-market=pd.read_csv("E:\Zero-Down Hackathon\market.csv")
-market_metrics=pd.read_csv("E:\Zero-Down Hackathon\market_metrics.csv")
+market=pd.read_csv("market.csv")
+market_metrics=pd.read_csv("market_metrics.csv")
 market_id=market_metrics.groupby('market_id').count().reset_index()
 
 
@@ -81,7 +82,5 @@ ind=score.index(maxscore)
 maxind=mid[ind]
 max_score(score,mid,maxscore,maxind)
 avg_sales(score,mid,city,mdi)
-
-print(len(metrics))
 
 # This block is for calculating the days of sold
