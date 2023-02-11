@@ -1,6 +1,0 @@
-pandas
-csv
-psycopg2
-streamlit
-matplotlib
-numpy
