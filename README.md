@@ -23,6 +23,5 @@ Market Hotness
 * Developing another algorithm with taking the cost and and wit respect ratio and the days we could get a score for the particular market id
 
 #### Deploying
-* I used streamlit cloud to deploy my app but it caused an error so  i'm attaching below images to show the UI
-![image](https://user-images.githubusercontent.com/81963819/218259134-6b708179-b46b-4547-a559-bd11addb13e3.png)
+
 
