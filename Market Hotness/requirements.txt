@@ -2,3 +2,4 @@ streamlit
 pandas
 csv
 psycopg2
+numpy
