@@ -40,3 +40,4 @@ finally:
         cursor.close()
         conn.close()
         print("Connection closed")
+
