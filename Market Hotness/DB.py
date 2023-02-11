@@ -13,7 +13,7 @@ def select_data(conn, cursor,tablename):
 try:
     conn = psycopg2.connect(
         host="localhost",
-        database="perntodo",
+        database="zerodown",
         user="postgres",
         password="navin123$"
     )
@@ -69,13 +69,13 @@ try:
     with open("E:\Zero-Down Hackathon\Market Hotness\market.sql", "r") as file:
         sql_file = file.read()
 
-    #cursor.execute(sql_file)
+    cursor.execute(sql_file)
 
     # This Command is used to dump into the table market metrics
     with open("E:\Zero-Down Hackathon\Market Hotness\market_metrics.sql", "r") as file:
         sql_file = file.read()
 
-    #cursor.execute(sql_file)
+    cursor.execute(sql_file)
 
     select_data(conn,cursor,'market_metrics')
 
