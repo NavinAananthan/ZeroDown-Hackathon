@@ -93,8 +93,3 @@ finally:
         conn.close()
         print("Connection closed")
 
-
-
-
-
-
