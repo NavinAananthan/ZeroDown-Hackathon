@@ -1,12 +1,18 @@
 import psycopg2
-import pandas as pd
+import csv
 
-def select_data(conn, cursor,tablename,id):
-    select_query = f"SELECT * FROM {tablename} where id={id};"
-    cursor.execute(select_query)
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
+
+def data_csv(cursor,filename,tablename):
+
+    query=f"select * from {tablename};"
+    cursor.execute(query)
+    rows=cursor.fetchall()
+    
+    with open(filename, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([i[0] for i in cursor.description])
+        writer.writerows(rows)
+
 
 try:
     conn = psycopg2.connect(
@@ -18,8 +24,8 @@ try:
 
     cursor = conn.cursor()
 
-    # SELECT
-    select_data(conn, cursor, 'market','372492')
+    #data_csv(cursor,'market.csv','market')
+    data_csv(cursor,'market_metrics.csv','market_metrics')
 
     conn.commit()
 
