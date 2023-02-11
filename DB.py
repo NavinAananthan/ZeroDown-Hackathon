@@ -66,13 +66,13 @@ try:
 
 
     # This command is to dump the data into the table market
-    with open("E:\Zero-Down Hackathon\Market Hotness\market.sql", "r") as file:
+    with open("E:\Zero-Down Hackathon\market.sql", "r") as file:
         sql_file = file.read()
 
     cursor.execute(sql_file)
 
     # This Command is used to dump into the table market metrics
-    with open("E:\Zero-Down Hackathon\Market Hotness\market_metrics.sql", "r") as file:
+    with open("E:\Zero-Down Hackathon\market_metrics.sql", "r") as file:
         sql_file = file.read()
 
     cursor.execute(sql_file)
@@ -92,9 +92,3 @@ finally:
         cursor.close()
         conn.close()
         print("Connection closed")
-
-
-
-
-
-
