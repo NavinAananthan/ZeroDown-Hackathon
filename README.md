@@ -23,4 +23,5 @@ Market Hotness
 
 #### Deploying
 * I used streamlit cloud to deploy my app but it caused an error so  i'm attaching below images to show the UI
-![image](https://user-images.githubusercontent.com/81963819/218258999-7052c099-76c6-45fd-b1e6-bb2e937bf6b0.png)
+![image](https://user-images.githubusercontent.com/81963819/218259134-6b708179-b46b-4547-a559-bd11addb13e3.png)
+
