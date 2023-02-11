@@ -1,9 +1,12 @@
 import psycopg2
 
 
-
-def insert_into_table():
-    return true
+def select_data(conn, cursor,tablename):
+    select_query = f"SELECT * FROM {tablename}"
+    cursor.execute(select_query)
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
 
 
 
@@ -55,16 +58,35 @@ try:
     table_name = "market_metrics"
     column_name = "market_id"
 
-    create_index_query = f"CREATE INDEX {index_name} ON {table_name} ({column_name})"
+    create_index_query = f"CREATE INDEX IF NOT EXISTS {index_name} ON {table_name} ({column_name})"
     
     cursor.execute(create_index_query)
+
+
+
+
+    # This command is to dump the data into the table market
+    with open("E:\Zero-Down Hackathon\Market Hotness\market.sql", "r") as file:
+        sql_file = file.read()
+
+    #cursor.execute(sql_file)
+
+    # This Command is used to dump into the table market metrics
+    with open("E:\Zero-Down Hackathon\Market Hotness\market_metrics.sql", "r") as file:
+        sql_file = file.read()
+
+    #cursor.execute(sql_file)
+
+    select_data(conn,cursor,'market_metrics')
 
     conn.commit()
     cursor.close()
 
+
 except (Exception, psycopg2.Error) as error:
     print("Error while working with PostgreSQL", error)
     
+
 finally:
     if conn:
         cursor.close()
