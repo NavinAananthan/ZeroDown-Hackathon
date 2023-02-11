@@ -50,7 +50,17 @@ try:
         """
     )
 
+    
+    index_name = "idx_market_metrics_market_id"
+    table_name = "market_metrics"
+    column_name = "market_id"
+
+    create_index_query = f"CREATE INDEX {index_name} ON {table_name} ({column_name})"
+    
+    cursor.execute(create_index_query)
+
     conn.commit()
+    cursor.close()
 
 except (Exception, psycopg2.Error) as error:
     print("Error while working with PostgreSQL", error)
