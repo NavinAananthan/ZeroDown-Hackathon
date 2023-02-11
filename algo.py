@@ -15,7 +15,7 @@ def get_avg_days_to_sell(market_metrics):
 
 
 def max_score(score,mid,maxscore,maxid):
-    st.header("Market hotness Calculator")
+    st.header("Market Hotness Calculator")
     st.text("Graph for the Avg sales price and their corresponding market_id")
     st.line_chart(pd.DataFrame(score,mid))
     st.text(f"The max sales {maxscore} has been done by the market id {maxid}")
