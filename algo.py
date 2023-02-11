@@ -8,12 +8,6 @@ def get_avg_price(market_metrics):
     return avg_prices
 
 
-def get_avg_days_to_sell(market_metrics):
-    return True
-
-
-
-
 def max_score(score,mid,maxscore,maxid):
     st.header("Market Hotness Calculator")
     st.text("Graph for the Avg sales price and their corresponding market_id")
@@ -33,16 +27,6 @@ def avg_sales(score,mid,city,mdi):
         ind=mid.index(int(market_id))
         cind=mdi.index(int(market_id))
         st.text(f"The score is: {score[ind]} and the city where it belongs is {city[cind]}")
-    except:
-        st.warning("Sorry, Enter correct Market id")
-
-   
-def day_sell(score,mid):
-    st.text("The below score is based on days took to sell")
-    try:
-        market_id=st.number_input('Enter the Market ID to get the score')
-        ind=mid.index(int(market_id))
-        st.text(f"The score is: {score[ind]}")
     except:
         st.warning("Sorry, Enter correct Market id")
 
@@ -83,4 +67,50 @@ maxind=mid[ind]
 max_score(score,mid,maxscore,maxind)
 avg_sales(score,mid,city,mdi)
 
+
 # This block is for calculating the days of sold
+
+def get_avg_day(market_metrics):
+    avg_prices = market_metrics.groupby('market_id',as_index=False)['days_to_sell'].mean()
+    return avg_prices
+
+
+def avg_day(score2,mid2,city2,mdi2):
+
+    st.text("The below score is based on Average of the the days to sell")
+    try:
+        marid=st.number_input('Enter the Market ID to get the score')
+        ind=mid2.index(int(marid))
+        cind=mdi2.index(int(marid))
+        st.text(f"The score is: {score2[ind]} and the city where it belongs is {city2[cind]}")
+    except:
+        st.warning("Sorry, Enter correct Market id")
+
+
+def day_score(score2,mid2,maxscore2,maxid2):
+    st.write("")
+    st.write("")
+    st.write("")
+    st.text("Graph for the Avg sales price and their corresponding market_id")
+    st.line_chart(pd.DataFrame(score2,mid2))
+    st.text(f"The max sales {maxscore2} has been done by the market id {maxid2}")
+    st.write("")
+    st.write("")
+    st.write("")
+
+
+avg_day=get_avg_day(metrics)
+price2=pd.DataFrame(avg_day)
+score2=list(price2["days_to_sell"])
+mid2=list(price2["market_id"])
+
+city2=list(market['city'])
+mdi2=list(market['id'])
+
+maxscore2=max(score2)
+ind2=score2.index(maxscore2)
+maxind2=mid2[ind2]
+max_score(score2,mid2,maxscore2,maxind2)
+avg_sales(score2,mid2,city2,mdi2)
+
+#print(score2)
