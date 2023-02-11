@@ -91,7 +91,7 @@ def day_score(score2,mid2,maxscore2,maxid2):
     st.write("")
     st.write("")
     st.write("")
-    st.text("Graph for the Avg sales price and their corresponding market_id")
+    st.text("Graph for the Avg days to sell and their corresponding market_id")
     st.line_chart(pd.DataFrame(score2,mid2))
     st.text(f"The max sales {maxscore2} has been done by the market id {maxid2}")
     st.write("")
@@ -110,7 +110,7 @@ mdi2=list(market['id'])
 maxscore2=max(score2)
 ind2=score2.index(maxscore2)
 maxind2=mid2[ind2]
-max_score(score2,mid2,maxscore2,maxind2)
-avg_sales(score2,mid2,city2,mdi2)
+day_score(score2,mid2,maxscore2,maxind2)
+avg_day(score2,mid2,city2,mdi2)
 
 #print(score2)
