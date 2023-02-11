@@ -46,8 +46,8 @@ def day_sell(score,mid):
         st.warning("Sorry, Enter correct Market id")
 
 
-market=pd.read_csv("E:\Zero-Down Hackathon\Market Hotness\market.csv")
-market_metrics=pd.read_csv("E:\Zero-Down Hackathon\Market Hotness\market_metrics.csv")
+market=pd.read_csv("E:\Zero-Down Hackathon\market.csv")
+market_metrics=pd.read_csv("E:\Zero-Down Hackathon\market_metrics.csv")
 market_id=market_metrics.groupby('market_id').count().reset_index()
 
 
@@ -82,6 +82,6 @@ maxind=mid[ind]
 max_score(score,mid,maxscore,maxind)
 avg_sales(score,mid,city,mdi)
 
-#print(city)
+print(len(metrics))
 
 # This block is for calculating the days of sold
