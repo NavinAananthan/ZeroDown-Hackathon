@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 from matplotlib import pyplot as plt
+import numpy as np
 
 
 def get_avg_price(market_metrics):
@@ -12,10 +13,9 @@ def get_avg_price(market_metrics):
 def getmaxscore(price,score):
     for index,row in price.iterrows():
         if(row['median_sale_price']==score):
-            mid=row['market_id']
+            print(row['median_sale_price'],row['market_id'])
             break
 
-    return mid
 
 
 
@@ -29,23 +29,35 @@ def getscore(id,price):
 
 
 
-def display_avg_price(avg_price,max_market,max_score):
-    st.write("")
-    st.write("")
-    st.write("")
+def display_avg_price(score,mid,maxscore,maxid):
     st.text("Graph for the Avg sales price and their corresponding market_id")
-    st.line_chart(pd.DataFrame(avg_price))
+    st.line_chart(pd.DataFrame(score,mid))
+    st.text(f"The max sales {maxscore} has been done by the market id {maxid}")
+    st.write("")
+    st.write("")
+    st.write("")
 
-    st.text(f"The max sales {max_score} has been done by the market id {max_market}")
 
 
+def avg_sales(score,mid):
 
-def UI(avg_price):
+    st.text("The below score is based on Average of the Sales after buying it")
+    try:
+        market_id=st.number_input('Enter the Market ID to get the score')
+        ind=mid.index(int(market_id))
+        st.text(f"The score is: {score[ind]}")
+    except:
+        st.warning("Sorry, Enter correct Market id")
 
-    mid=st.text_input('Enter the Market ID to get the score')
-    st.text("The score is: ")
-    
-
+   
+def day_sell(score,mid):
+    st.text("The below score is based on days took to sell")
+    try:
+        market_id=st.number_input('Enter the Market ID to get the score')
+        ind=mid.index(int(market_id))
+        st.text(f"The score is: {score[ind]}")
+    except:
+        st.warning("Sorry, Enter correct Market id")
 
 
 market=pd.read_csv("E:\Zero-Down Hackathon\Market Hotness\market.csv")
@@ -77,8 +89,15 @@ metrics.days_to_sell.fillna(metrics.days_to_pending, inplace=True)
 avg_price=get_avg_price(metrics)
 price=pd.DataFrame(avg_price)
 
-max_score=max(price['median_sale_price'])
-max_market=getmaxscore(price,max_score)
+score=list(price["median_sale_price"])
+mid=list(price["market_id"])
 
-UI(price)
-display_avg_price(price,max_market,max_score)
+
+maxscore=max(score)
+ind=score.index(maxscore)
+maxind=mid[ind]
+
+display_avg_price(score,mid,maxscore,maxind)
+avg_sales(score,mid)
+
+metrics.to_csv('metric.csv')
